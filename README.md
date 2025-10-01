@@ -19,8 +19,6 @@ wp4-interop-test-bed/
 │
 ├── wallet-conformance-src/   # Source code for wallet conformance checks
 │
-├── .github/                  # CI/CD workflows
-│
 ├── README.md                 # This file
 └── LICENSE
 ```
