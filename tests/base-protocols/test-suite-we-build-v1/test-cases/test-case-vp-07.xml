@@ -1,0 +1,73 @@
+<testcase id="tc015" xmlns="http://www.gitb.com/tdl/v1/" xmlns:gitb="http://www.gitb.com/core/v1/"
+>
+    <metadata>
+        <gitb:name>Test Case VP-007: WE BUILD - DCQL-based Verifiable Presentation request for
+            urn:eu.europa.ec.eudi:pid:1:mso_mdoc with family_name claim using using X509 client_id_scheme with
+            direct_post
+            response mode and GET method for request URI.
+        </gitb:name>
+        <gitb:version>1.0</gitb:version>
+        <gitb:description>Test integration of Wallet with WE BUILD reference implementation.
+            Generates a DCQL-based Verifiable Presentation request for (urn:eu.europa.ec.eudi:pid:1:mso_mdoc with
+            family_name
+            claim) using x509 client_id_scheme with direct_post response mode.
+            Key-binding JWT verification / Holder binding (proof of possession)
+            Credential signature verification
+            selective disclosure validation
+            JWT/JWE processing (for direct_post.jwt)
+        </gitb:description>
+        <!-- See here how we refer to a HTML block that will be added as documentation for the test case. -->
+        <gitb:documentation import="/docs/test-case-1.html"/>
+    </metadata>
+    <actors>
+        <!--
+            The Actor IDs need to match those in the test suite and in the test engine. One of these needs to always be the SUT (System Under Test).
+        -->
+        <gitb:actor id="User" role="SUT"/>
+        <gitb:actor id="Verifier"/>
+    </actors>
+    <!-- 
+        Setting "stopOnError" to true will stop the test session as soon as an error is encountered. By default test sessions will continue regardless of errors.
+    -->
+    <steps stopOnError="false">
+        <!--
+            The "call" step is used to use a scriptlet, which is the GITB TDL's construct for a reusable block of steps.
+            Anything that repeats can be defined as a scriptlet and reused like this. You can also parameterise its use
+            through the inputs you pass it.
+        -->
+        <call id="issue" path="/scriptlets/vp-07.xml">
+            <input name="credentialType">"urn:eu.europa.ec.eudi:pid:1:mso_mdoc"</input>
+        </call>
+    </steps>
+    <!-- The output section allows us to define specialised summary error (or success) messages to make the result more user-friendly. -->
+    <output>
+        <success>
+            <default>"Test case completed successfully."</default>
+        </success>
+        <failure>
+            <case>
+                <!--
+                    Notice how we use the built-in "STEP_STATUS" map to lookup the status of steps by their ID.
+                    To check steps defined within scriptlets you prefix the step ID by the scriptlet call step's ID (separated by an underscore).
+                -->
+                <cond>$STEP_STATUS{authenticate_step1} = 'ERROR'</cond>
+                <message>"The credential request was not completed successfully. Please check the failed step's report
+                    for more information and the test log."
+                </message>
+            </case>
+            <case>
+                <cond>$STEP_STATUS{authenticate_getValidationResponse} = 'ERROR'</cond>
+                <message>"A completed validation response was not received within the expected time limit."</message>
+            </case>
+            <case>
+                <cond>$STEP_STATUS{authenticate_step2} = 'ERROR'</cond>
+                <message>"The validation response was not completed successfully. Please check the failed step's report
+                    for more information and the test log."
+                </message>
+            </case>
+            <!-- If no specific case is matched print a default message. -->
+            <default>"Test case failed. Please check the failed step's report for more information and the test log."
+            </default>
+        </failure>
+    </output>
+</testcase>

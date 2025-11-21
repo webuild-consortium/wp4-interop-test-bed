@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptlet id="issueUsers" xmlns="http://www.gitb.com/tdl/v1/">
+    <params>
+        <var name="expectSuccess" type="string">
+            <value>true</value>
+        </var>
+    </params>
+
+    <steps>
+        <assign to="credentialIssuanceEndpoint">$DOMAIN{homebrew} || "/session"</assign>
+        <assign to="getPIDIssuanceStatus">$DOMAIN{issuerServiceRFC} || "/issueStatus"</assign>
+        <assign to="getIssuerLogsEndpoint">$DOMAIN{homebrew} || "/logs"</assign>
+        <process output="validationSessionId" handler="TokenGenerator" operation="uuid"/>
+
+
+        <!-- Step 0: Request user input -->
+        <group id="step0" title="Step 0" desc="Request User Input">
+            <log>"Requesting user input for credential issuance."</log>
+
+            <!-- Store user input under $getUserInput{userInput} -->
+            <interact id="getUserInput" hidden="false" inputTitle="Provide input">
+                <request desc="Request URI" name="userInput" required="true" inputType="TEXT"/>
+            </interact>
+
+            <log>"User provided input: [" || $getUserInput{userInput} || "]"</log>
+
+            <verify handler="ExpressionValidator" desc="Check that user provided non-empty input">
+                <input name="expression">$getUserInput{userInput} != ''</input>
+            </verify>
+        </group>
+
+        <!-- Step 1 -->
+        <group id="step1" title="Step 1" desc="Request Issuance">
+            <log>
+                "Requesting issuance with session ID [" || $validationSessionId || "] from endpoint [" ||
+                $credentialIssuanceEndpoint || "] with user input [" || $getUserInput{userInput} || "]."
+            </log>
+
+            <send id="issuePIDRequest" desc="Request credential issuance" from="User" to="Issuer"
+                  handler="$DOMAIN{messagingServiceAddress}">
+                <input name="type">"homebrew-wallet"</input>
+                <input name="requestURI">$getUserInput{userInput}</input>
+                <input name="endpoint">$credentialIssuanceEndpoint</input>
+                <input name="sessionId">$validationSessionId</input>
+            </send>
+
+            <verify handler="StringValidator" desc="Check status code">
+                <input name="actualstring">$issuePIDRequest{response}{status}</input>
+                <input name="expectedstring">"200"</input>
+            </verify>
+
+
+            <!--            <interact hidden="true" inputTitle="Scan QR code">-->
+            <!--                <instruct name="qrCode" desc="Credential QR code" mimeType="$issuePIDRequest{response}{qrCodeType}">-->
+            <!--                    $issuePIDRequest{response}{qrCode}-->
+            <!--                </instruct>-->
+            <!--                <instruct name="qrCodeText" desc="VCI request" mimeType="text/plain">-->
+            <!--                    $issuePIDRequest{response}{vpCode}-->
+            <!--                </instruct>-->
+            <!--            </interact>-->
+        </group>
+
+
+        <group id="step2" title="Step 2" desc="Get Logs...">
+            <receive id="getLogs" desc="Get the service logs" from="Issuer" to="User"
+                     handler="$DOMAIN{messagingServiceAddress}" timeout="$DOMAIN{validationResponseTimeout}"
+                     timeoutIsError="true">
+                <input name="endpoint">$getIssuerLogsEndpoint</input>
+                <input name="sessionId">$validationSessionId</input>
+                <input name="logFetchType">"path"</input>
+                <input name="type">"getLogs"</input>
+            </receive>
+            <!--
+                Although not needed int he current test cases, the following logic considers that you may also be
+                expecting a failure response. The "if/then/else" XPath expressions that follow offer a nice example of how you can
+                do some simple conditional logic when assigning variables.
+            -->
+            <assign to="expectedHttpStatus">if ($expectSuccess = 'true') then '200' else '500'</assign>
+
+            <!--
+                Use the built-in JSONPointerProcessor to extract the validation status for the subsequent check.
+            -->
+            <process handler="JSONPointerProcessor" operation="process" output="validationStatus">
+                <input name="content">$getLogs{response}{body}</input>
+                <input name="pointer">"/logs"</input>
+            </process>
+
+        </group>
+        <!--
+            Although not needed int he current test cases, the following logic considers that you may also be
+            expecting a failure response. The "if/then/else" XPath expressions that follow offer a nice example of how you can
+            do some simple conditional logic when assigning variables.
+        -->
+        <assign to="expectedHttpStatus">if ($expectSuccess = 'true') then '200' else '500'</assign>
+
+
+    </steps>
+</scriptlet>

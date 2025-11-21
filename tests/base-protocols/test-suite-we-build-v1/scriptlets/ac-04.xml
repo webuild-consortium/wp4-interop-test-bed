@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptlet id="issueUsers" xmlns="http://www.gitb.com/tdl/v1/">
+    <!-- The "params" block defined the scriptlet's inputs. Parameters without default values are mandatory. -->
+    <params>
+        <var name="credentialType" type="string"></var>
+        <var name="expectSuccess" type="string">
+            <value>true</value>
+        </var>
+    </params>
+    <steps>
+        <!--
+            See here how wee refer to a parameter defined at DOMAIN level. We are also using XPath to create additional
+            variables that we will use later on.
+            Besides DOMAIN you can also refer to custom properties at organisation, system or statement level (we didn't
+            have such a need in these tests).
+        -->
+        <assign to="credentialIssuanceEndpoint">$DOMAIN{webuild} || "/offer-code-sd-jwt"</assign>
+        <assign to="getIssuanceStatus">$DOMAIN{webuild} || "/issueStatus"</assign>
+        <assign to="getIssuerLogsEndpoint">$DOMAIN{webuild} || "/logs"</assign>
+        <!-- 
+            Example of using an embedded process handler (a built-in capability) to generate a UUID.
+         -->
+        <process output="validationSessionId" handler="TokenGenerator" operation="uuid"/>
+        <!--
+            The "group" step adds a nice visual distinction in the diagram over related sets of steps.
+        -->
+        <group id="mainFlow" title="Issuance flow"
+               hiddenContainer="true"
+               stopOnChildError="true">
+            <group id="step1" title="Step 1" desc="Request Issuance">
+                <!--
+                    See here how we use the "log" step to add information in the test session log. You can also add information
+                    from supporting test services (e.g. a messaging service)
+                -->
+                <log>"Requesting issuance with session ID [" || $validationSessionId || "] from endpoint [" ||
+                    $credentialIssuanceEndpoint || "]."
+                </log>
+                <!--
+                    The "send" step calls the messaging service and expects a synchronous response. In this case we will end up doing a
+                    getCredentialRequest call based on the inputs we are supplying. See here how we refer to the address of the service
+                    via the DOMAIN's configuration.
+                -->
+                <send id="issueRequest" desc="Request credential issuance" from="User" to="Issuer"
+                      handler="$DOMAIN{messagingServiceAddress}">
+                    <input name="endpoint">$credentialIssuanceEndpoint</input>
+                    <input name="credentialType">$credentialType</input>
+                    <input name="sessionId">$validationSessionId</input>
+                    <input name="signatureType">"did:web"</input>
+                    <!--                <input name="type">"validatedId-issuer"</input>-->
+                </send>
+                <!--
+                    The "verify" step is the primary means of making assertions. You can also have the messaging steps fail and produce reports
+                    but it is a better practice to only do so if something fundamental and unexpected happened. The best approach is to complete
+                    the messaging step and follow by making specific assertions.
+
+                    By the way you see here how we refer to items (nested within other items in this case) in the step report returned by the
+                    "send" step.
+                -->
+                <verify handler="StringValidator" desc="Check status code">
+                    <input name="actualstring">$issueRequest{response}{status}</input>
+                    <input name="expectedstring">"200"</input>
+                </verify>
+                <verify handler="ExpressionValidator" desc="Check non-empty QR code">
+                    <input name="expression">$issueRequest{response}{qrCode} != ''</input>
+                </verify>
+                <!--
+                    The "interact" step creates a user prompt. Here we only show the QR code but we could also show other information
+                    or request inputs via various means (e.g. text editors, dropdowns etc.).
+
+                    Setting the mimeType attribute allows the test engine to figure out how to best process this. For example if this
+                    was JSON it would display a code editor with JSON highlighting. In this case specifically we have an image type
+                    so we will see a popup displaying the image.
+                -->
+                <interact hidden="true" inputTitle="Scan QR code">
+                    <instruct name="qrCode" desc="Credential QR code" mimeType="$issueRequest{response}{qrCodeType}">
+                        $issueRequest{response}{qrCode}
+                    </instruct>
+                    <instruct name="qrCodeText" desc="VCI request" mimeType="text/plain">$issueRequest{response}{vpCode}
+                    </instruct>
+                </interact>
+            </group>
+            <group id="step2" title="Step 2" desc="Check response">
+                <!--
+                    The "receive" step is the other important messaging step whereby the test engine will wait to receive a message.
+                    We are passing as inputs the information relative to what we expect the supporting service to do, in this case
+                    the validation session ID and the endpoint for the getValidationResponse service.
+
+                    The messaging service is implemented to poll the verifier service until we get a non-pending response.
+                    Notice also how we set a "timeout" here so that the test session will stop waiting after a (configurable) threshold.
+                -->
+                <receive id="getValidationResponse" desc="Get the validation response" from="Issuer" to="User"
+                         handler="$DOMAIN{messagingServiceAddress}" timeout="$DOMAIN{validationResponseTimeout}"
+                         timeoutIsError="true">
+                    <input name="endpoint">$getIssuanceStatus</input>
+                    <input name="sessionId">$validationSessionId</input>
+                    <!--                <input name="type">"getValidationResponseValidatedID"</input>-->
+                </receive>
+                <!--
+                    Although not needed int he current test cases, the following logic considers that you may also be
+                    expecting a failure response. The "if/then/else" XPath expressions that follow offer a nice example of how you can
+                    do some simple conditional logic when assigning variables.
+                -->
+                <assign to="expectedHttpStatus">if ($expectSuccess = 'true') then '200' else '500'</assign>
+                <assign to="expectedValidationStatus">if ($expectSuccess = 'true') then 'success' else 'fail'</assign>
+                <verify handler="StringValidator" desc="Check status code">
+                    <input name="actualstring">$getValidationResponse{response}{status}</input>
+                    <input name="expectedstring">$expectedHttpStatus</input>
+                </verify>
+                <!--
+                    Use the built-in JSONPointerProcessor to extract the validation status for the subsequent check.
+                -->
+                <process handler="JSONPointerProcessor" operation="process" output="validationStatus">
+                    <input name="content">$getValidationResponse{response}{body}</input>
+                    <input name="pointer">"/status"</input>
+                </process>
+                <verify handler="StringValidator" desc="Check validation status">
+                    <input name="actualstring">$validationStatus</input>
+                    <input name="expectedstring">$expectedValidationStatus</input>
+                </verify>
+            </group>
+
+        </group>
+
+        <group id="step3" title="Step 3" desc="Get Logs...">
+            <receive id="getLogs" desc="Get the service logs" from="Issuer" to="User"
+                     handler="$DOMAIN{messagingServiceAddress}" timeout="$DOMAIN{validationResponseTimeout}"
+                     timeoutIsError="true">
+                <input name="endpoint">$getIssuerLogsEndpoint</input>
+                <input name="sessionId">$validationSessionId</input>
+                <input name="logFetchType">"path"</input>
+                <input name="type">"getLogs"</input>
+            </receive>
+            <!--
+                Although not needed int he current test cases, the following logic considers that you may also be
+                expecting a failure response. The "if/then/else" XPath expressions that follow offer a nice example of how you can
+                do some simple conditional logic when assigning variables.
+            -->
+            <assign to="expectedHttpStatus">if ($expectSuccess = 'true') then '200' else '500'</assign>
+
+            <!--
+                Use the built-in JSONPointerProcessor to extract the validation status for the subsequent check.
+            -->
+            <process handler="JSONPointerProcessor" operation="process" output="validationStatus">
+                <input name="content">$getLogs{response}{body}</input>
+                <input name="pointer">"/logs"</input>
+            </process>
+
+        </group>
+    </steps>
+    <!--
+        In this case the scriptlet completes without returning any outputs. If needed a scriptlet can include "output"
+        elements to define output values for the calling test case or parent scriptlet. Scriptlets are very much like
+        functions that allow you to reuse common logic, based on (optional) inputs, and producing (optional) outputs.
+    -->
+</scriptlet>

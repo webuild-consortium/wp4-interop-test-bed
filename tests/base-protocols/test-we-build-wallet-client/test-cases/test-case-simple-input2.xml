@@ -1,0 +1,49 @@
+<testcase id="tc02" xmlns="http://www.gitb.com/tdl/v1/" xmlns:gitb="http://www.gitb.com/core/v1/"
+>
+    <metadata>
+        <gitb:name>Test case 002: WE BUILD Issuer VP 1.0</gitb:name>
+        <gitb:version>1.0</gitb:version>
+        <gitb:description>
+            Test integration of a Verifier with WE BUILD headless wallet reference implementation.
+            - supports VP v1.0
+            - Ensure you have already issued the requested credentials to the headless wallet (test case 001) prior to
+            testing verification
+        </gitb:description>
+    </metadata>
+    <actors>
+        <gitb:actor id="User" role="SUT"/>
+        <gitb:actor id="Issuer"/>
+    </actors>
+    <steps stopOnError="true">
+        <group id="step1" title="Step 1" desc="VCI URI">
+            <log>"Requesting user input to continue test."</log>
+
+            <!--            <interact hidden="false" desc="Prompt the user for a text value">-->
+            <!--                <instruct desc="Prompt the user for a text value">"Please enter a short test string."</instruct>-->
+            <!--                <request desc="Test data">-->
+            <!--                    <input name="userInput" type="string" desc="Test data" required="true"/>-->
+            <!--                </request>-->
+            <!--            </interact>-->
+
+            <!-- Log the user's input -->
+
+
+            <call id="issue" path="/scriptlets/headless-wallet.xml">
+                <!--                <input name="credentialType">"urn:eu.europa.ec.eudi:pid:1"</input>-->
+            </call>
+
+
+        </group>
+    </steps>
+    <output>
+        <success>
+            <default>"Credential offer or Request URI."</default>
+        </success>
+        <failure>
+            <default>"Test failed. Please check the test log for details."</default>
+        </failure>
+    </output>
+</testcase>
+
+
+

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite id="rfcv3-rp" xmlns="http://www.gitb.com/tdl/v1/" xmlns:gitb="http://www.gitb.com/core/v1/"
+>
+    <!--
+        This is the test suite's entry point file as it points to the test cases which in turn point to other scriptlets and resources. In general there is
+        no requirement on the structure of a test suite but it is a good practice to keep things organised with a consistent structure that makes sense to you
+        (e.g. a "test_cases" folder for the test cases, a "scriptlets" folder for scriptlets, "resources" for files to import etc.).
+    -->
+    <metadata>
+        <gitb:name>WE BUILD Relying Parties Conformance Test Suite</gitb:name>
+        <gitb:version>1.0</gitb:version>
+        <gitb:description>Test Relying Party (Issuer/Verifier) for Conformance with respect to WE BUILD Headless Wallet
+            Reference Implementation.
+        </gitb:description>
+    </metadata>
+    <actors>
+        <!--
+            The IDs of the actors need to match the ones you see on the UI. Note that when you deploy a test suite it will automatically create actors based on
+            the below definitions if missing.
+        -->
+        <gitb:actor id="User" default="true">
+            <gitb:name>User</gitb:name>
+            <gitb:desc>The user of an wallet that is requesting authentication.</gitb:desc>
+        </gitb:actor>
+        <gitb:actor id="Issuer">
+            <gitb:name>Issuer Service</gitb:name>
+            <gitb:desc>The issuer service that issues the credential.</gitb:desc>
+        </gitb:actor>
+        <gitb:actor id="Verifier">
+            <gitb:name>Verifier Service</gitb:name>
+            <gitb:desc>The Verifier service that verifies the credential.</gitb:desc>
+        </gitb:actor>
+    </actors>
+    <!--
+        The test case IDs refer to the IDs of the relevant test cases (see their root element). You can place test cases anywhere you want in the test suite archive
+        and they will be picked up automatically when parsing the test suite.
+    -->
+    <testcase id="tc01"/>
+    <testcase id="tc02"/>
+
+</testsuite>
