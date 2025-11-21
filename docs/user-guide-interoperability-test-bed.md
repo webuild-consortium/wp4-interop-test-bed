@@ -115,9 +115,7 @@ You will now receive the following:
 * Credentials (per tenant/profile)  
 * Access to reference test suites and the reporting portal
 
-    ```
-Tip: Use distinct "Systems" in your tenant per environment to keep evidence reproducible.
-```
+```Tip: Use distinct "Systems" in your tenant per environment to keep evidence reproducible.```
 
 ## 2.2	Using the test cases provided
 
@@ -584,4 +582,4 @@ components:
 
 # Appendix: User workflow with ITB
 
-For those who wish to learn more and get familiarised with ITB UI, refer [to ITB User Guide here](https://www.itb.ec.europa.eu/docs/itb-ou/latest/).
+For those who wish to learn more and get familiarised with ITB UI, refer [to ITB User Guide here](reference-implementation-interoperability-test-bed.md).
