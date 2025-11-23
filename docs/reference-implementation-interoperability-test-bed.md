@@ -1,6 +1,4 @@
-# EUDI Wallet Interoperability Test Bed
-
-## Reference Implementation Specification
+# EUDI Wallet Interoperability Test Bed - Reference Implementation Specification
 
 Abstract: This reference implementation specification is a guide for all wallet SW vendors to provide their implementation as a reference implementation with the ITB.  
 
@@ -8,8 +6,7 @@ Audience: WP4 - Testing Group, ITB platform developers and maintainers, Testing 
 
 **Table of Contents**
 
-- [EUDI Wallet Interoperability Test Bed](#eudi-wallet-interoperability-test-bed)
-  - [Reference Implementation Specification](#reference-implementation-specification)
+- [EUDI Wallet Interoperability Test Bed - Reference Implementation Specification](#eudi-wallet-interoperability-test-bed---reference-implementation-specification)
 - [Revision History](#revision-history)
 - [1.	Introduction](#1introduction)
   - [1.1	Purpose](#11purpose)
