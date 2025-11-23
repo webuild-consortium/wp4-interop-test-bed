@@ -1,7 +1,4 @@
-# EUDI Wallet Interoperability Test Bed
-
-
-## User Guide
+# EUDI Wallet Interoperability Test Bed - User Guide
 
 **Abstract**:  
 
@@ -16,7 +13,25 @@ This guide explains how issuers, verifiers, and wallet providers onboard the EUD
 * If you are a TEST AUTHOR: see Section 2.3 for adding test cases and required metadata.
 
 **Table of Contents**
-[TOC]
+
+- [EUDI Wallet Interoperability Test Bed - User Guide](#eudi-wallet-interoperability-test-bed---user-guide)
+- [Revision History](#revision-history)
+- [1. Introduction](#1-introduction)
+  - [1.1 Purpose](#11-purpose)
+  - [1.2 Scope](#12-scope)
+  - [1.3 What the ITB is](#13-what-the-itb-is)
+  - [1.4 Architectural principles](#14-architectural-principles)
+- [2. Onboarding to ITB](#2-onboarding-to-itb)
+  - [2.1 Obtaining the access](#21-obtaining-the-access)
+  - [2.2 Using the test cases provided](#22-using-the-test-cases-provided)
+  - [2.3 Adding more test cases](#23-adding-more-test-cases)
+- [3. Minimal integration contracts](#3-minimal-integration-contracts)
+  - [3.1 Issuer / Verifier: Required endpoints](#31-issuer--verifier-required-endpoints)
+  - [3.1 Issuer and Verifier endpoints](#31-issuer-and-verifier-endpoints)
+  - [3.2 Holder Wallet endpoints](#32-holder-wallet-endpoints)
+  - [3.3 Observability and logs (optional)](#33-observability-and-logs-optional)
+  - [3.4 OpenAPI reference with example](#34-openapi-reference-with-example)
+- [Appendix: User workflow with ITB](#appendix-user-workflow-with-itb)
 
 # Revision History
 
@@ -36,7 +51,7 @@ This guide explains how issuers, verifiers, and wallet providers onboard the EUD
    </td>
    <td>21-Nov-2025
    </td>
-   <td>Nikos Triantafyllou (UAegean), 
+   <td>Nikos Triantafyllou (UAegean),
 <p>
 Lal Chandran (iGrant.io),
 <p>
@@ -47,24 +62,21 @@ George Padayatti (iGrant.io)
   </tr>
 </table>
 
-
-# 1.	Introduction 
+# 1. Introduction
 
 This guide describes how to connect your Issuer, Verifier, or Holder Wallet to the EUDI Wallet Interoperability Test Bed (ITB), execute deterministic reference tests, and submit evidence for compliance sign-off. The ITB provides neutral orchestration, logging, and reporting to validate protocol behavior and profile conformance across implementations.
 
-
-## 1.1	Purpose
+## 1.1 Purpose
 
 The purpose of this guide is to describe what you must do to join the ITB and achieve compliance sign off. It defines the artefacts to supply, the interfaces to use, the test steps to execute, and the evidence to submit. It also clarifies responsibilities for issuers, verifiers, wallet providers, and the ITB operator, and sets out the sequence of activities from registration to approval.
 
-Deliverables expected from the implementers looking to use the ITB: Endpoints, Configuration(s). 
+Deliverables expected from the implementers looking to use the ITB: Endpoints, Configuration(s).
 
 Outputs (you receive): Session-bound reports (PASS/FAIL), logs, and a sign-off record if all mandatory tests pass.
 
+## 1.2 Scope
 
-## 1.2	Scope
-
-This guide covers onboarding and compliance activities only. It includes environment preparation, reference test execution, log and report submission, management of non conformities, and the request for final sign off. It does not provide architectural explanations or design details of the ITB. In a nutshell: 
+This guide covers onboarding and compliance activities only. It includes environment preparation, reference test execution, log and report submission, management of non conformities, and the request for final sign off. It does not provide architectural explanations or design details of the ITB. In a nutshell:
 
 In scope:
 
@@ -78,12 +90,11 @@ Out of scope:
 * Product-specific business logic and domain rules.
 * Full profile specifications (refer to profile rulebooks and OIDC specs).
 
-
-## 1.3	What the ITB is
+## 1.3 What the ITB is
 
 The ITB is an orchestration and reporting system that sits between systems under test. It coordinates sessions, drives reference services, captures evidence and produces conformance and interoperability reports. It does not embed domain business rules. It focuses on protocol behaviour and profile compliance. The ITB does not enforce domain business rules; it validates protocol behaviour and profile compliance.
 
-## 1.4	Architectural principles
+## 1.4 Architectural principles
 
 * Keep business logic outside the platform
 * Make tests deterministic and repeatable
@@ -91,15 +102,13 @@ The ITB is an orchestration and reporting system that sits between systems under
 * Use small, stateless services that scale horizontally
 * Version by profile so multiple protocol versions can run side by side
 
+# 2. Onboarding to ITB
 
-# 2.	Onboarding to ITB
-
-
-## 2.1	Obtaining the access
+## 2.1 Obtaining the access
 
 **Objective:** Establish a tenant, credentials, and profile so your implementation can run reference tests.
 
-**Procedure:** Follow the steps below to get onboarded to ITB: 
+**Procedure:** Follow the steps below to get onboarded to ITB:
 
 **Step 1:** Contact [Testing Group Slack Channel](https://we-build-consortium.slack.com/archives/C09JQQD5865) with:
 
@@ -117,7 +126,7 @@ You will now receive the following:
 
 ```Tip: Use distinct "Systems" in your tenant per environment to keep evidence reproducible.```
 
-## 2.2	Using the test cases provided
+## 2.2 Using the test cases provided
 
 **Objective:** execute reference/conformance tests deterministically and collect evidence for reporting.
 
@@ -131,7 +140,7 @@ You will now receive the following:
 
 **Outcome:** Each mandatory test is marked PASS/FAIL. Warnings and non-conformities (if any) are listed with evidence pointers.
 
-## 2.3	Adding more test cases
+## 2.3 Adding more test cases
 
 **Objective:** Extend coverage with deterministic, tenant-specific test scenarios to enable interop testing across the ecosystem.
 
@@ -158,8 +167,8 @@ The ITB interacts with connected systems via **a minimal set of deterministic RE
 * JSON-based with explicit success/fail semantics,
 * Observable (report PENDING → terminal state: SUCCESS or FAIL).
 * Default polling policy (unless overridden by the test case):
-    * cadence: every 10 seconds
-    * timeout: 60 seconds
+  * cadence: every 10 seconds
+  * timeout: 60 seconds
 
 ```
 NOTE: In the following sections, the endpoint names (e.g. /request, /poll) are given as an example and are up to the implementer to provide the correct values 
@@ -167,13 +176,13 @@ NOTE: In the following sections, the endpoint names (e.g. /request, /poll) are g
 
 ## 3.1 Issuer / Verifier: Required endpoints
 
-## 3.1	Issuer and Verifier endpoints
+## 3.1 Issuer and Verifier endpoints
 
 **Request:**
 
 Method: POST | Path: <code>/request</code>
 
-**Purpose: **
+**Purpose:**
 
 Create a VCI request (Issuer) or a VP request (Verifier) bound to an ITB session. \
 
@@ -209,7 +218,7 @@ Response:
 }
 ```
 
-## 3.2	Holder Wallet endpoints
+## 3.2 Holder Wallet endpoints
 
 **Request:**
 
@@ -239,7 +248,6 @@ Request body:
 
 **Poll:** Same as 3.1 Poll.
 
-
 ## 3.3 Observability and logs (optional)
 
 Method: GET | Path: `/logs/{sessionId}`
@@ -261,7 +269,7 @@ Each system being integrated for testing MUST document its implementation using 
 
 The following reference definitions are provided:
 
-* **Issuer and Verifier OpenAPI**: Defines /request, /poll, and /logs/{sessionId} endpoints. 
+* **Issuer and Verifier OpenAPI**: Defines /request, /poll, and /logs/{sessionId} endpoints.
 * **Holder Wallet OpenAPI:** Defines /handle-request and /poll endpoints.
 
 These templates specify payload schemas (sessionId, credentialType, status, errors[]) and expected HTTP codes (200, 400, 401, 500). Implementers adapt base URLs per tenant but MUST preserve the endpoint contract and status model.
