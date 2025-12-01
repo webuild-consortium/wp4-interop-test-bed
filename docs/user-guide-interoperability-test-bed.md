@@ -110,7 +110,7 @@ The ITB is an orchestration and reporting system that sits between systems under
 
 **Procedure:** Follow the steps below to get onboarded to ITB:
 
-**Step 1:** Contact [Testing Group Slack Channel](https://we-build-consortium.slack.com/archives/C09JQQD5865) with:
+**Step 1:** Contact [#itb-support Slack Channel](https://we-build-consortium.slack.com/archives/C09K65GLKT2) with:
 
 * Organisation name and contacts (technical + governance)
 * Intended roles: Issuer / Verifier / Holder (one or more)
