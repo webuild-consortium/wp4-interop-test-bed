@@ -329,7 +329,8 @@ Method: POST | Path: `/handle-request`
 ```
 {
   "deepLink": "openid4vp://?request_uri=https%3A%2F%2Fexample.test%2Fx509%2Fx509VPrequest%2F1234&client_id=x509_san_dns%3Adss.aegean.gr&request_uri_method=post",
-  "sessionId": 14074
+  "sessionId": 14074,
+  "pin":123,
 }
 ```
 
@@ -356,6 +357,8 @@ Method: POST | Path: `/handle-request`
     **It** must be passed exactly as encoded in the QR/test case, including URL-encoded query parameters.
 
 2. **sessionId** (string or integer, required):  Correlation identifier used by the test suite to link this wallet run to the corresponding ITB+ session.
+
+3. **pin** (string or integer, **OPTIONAL**) parameter that can accept a transaction code for use in per-authorisation code flows. 
 
 **Expected behaviour**
 
