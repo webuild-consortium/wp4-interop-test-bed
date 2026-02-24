@@ -1,9 +1,26 @@
+# External test environments 
 This document lists the external test environments that we are aware of.
-Please keep in mind that information is being updated continuously. If you have new information, please update this information if you can.
+Please keep in mind that information is being updated continuously. If you have new information, please update this information or inform the Testing Group in WP4.
 
 We expect most of these environments to have a specific trust infrastructural setup. This means that you probably need to adapt your implementations to meet the requirements set out by them to engage. Not all environments are open to everyone. 
 
 The WE BUILD test environment (ITB) is handled independently of external test environments.
+
+[Europe](#europe)  
+[France](#france)  
+[Germany](#germany)  
+[Lithuania](#lithuania)  
+[Norway](#norway)  
+[Sweden](#sweden)  
+
+## Europe
+The European Commission is establishing a Functional Conformance Assessment Framework (FCAF). This is a test suite aimed to support CABs (Conformance Assessment Bodies) in the certification of wallets and other ecosystem services.
+* It does NOT provide a testing environment or actual testing options, only the specifications and definitions
+* It is restricted to functional testing
+
+https://conformance.eudi.dev/latest/overview/
+
+Rough roadmap shows first functional stuff out in May (on PID issuing). From the Testing Group we'll monitor gaps and differences to testing in WE BUILD.
 
 ## France
 https://playground.france-identite.gouv.fr/
