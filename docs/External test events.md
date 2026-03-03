@@ -11,6 +11,7 @@ CSC provides a reference wallet implementation in the POTENTIAL Playground sandb
 The EC will be present and support the test cases.
 
 For more information and registration: https://cscplugtest.by.lindo.agency/cscplugtesthome
+Registration is now closed as the event has reached it's maximum capacity. Please contact info@cloudsignatureconsortium.org with any questions. 
 
 # ETSI EAA Remote Plugtests May 2026
 ETSI’s Centre for Testing and Interoperability, with the support of ETSI’s Technical Committee for Electronic Signatures and Trust Infrastructures (TC ESI), is organising the [Electronic Attestation of Attributes (EAA) Plugtests™ event](https://www.etsi.org/events/2607-eaa-plugtests), which will be held remotely from **4 May to 1 June 2026**. This event is co-funded by the European Union (EU) and the European Free Trade Association (EFTA).
