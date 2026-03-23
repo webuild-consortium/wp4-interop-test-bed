@@ -33,3 +33,12 @@ Ensure that your generic requirements are covered by the [Architecture Decision 
 ## Getting test cases
 The Test Group will write test cases for all new (approved) CSs. We will write the test cases in collaboration with your use case or group.  
 Reach out through the [#itb-support](https://we-build-consortium.slack.com/archives/C09K65GLKT2) Slack channel to contact us on this.
+
+## Updating scenarios, flows, attestations
+When you update specifications, keep in mind that this will affect existing implementations and definitions.  
+- The Test Group will provide test cases in different versions, making the ITB backward compatible. The Test Group will also ensure that new versions of the Conformance Specifications are being covered by new test cases.
+- You need to ensure that the new information is being covered by a rulebook (including the changes, so keep the “old” information in there) and that that rulebooks points to the new/correct CSs and data schemas.
+- What you need to collaborate on, are the definitions that are shared by multiple use cases and groups:
+  - You might need to create a new version or instance of an attestation or data schema
+  - The same goes for rulebooks if they are used across use cases
+If you need to deprecate an old version, plan for a transition period and communicate this to all parties who work with the current version.
