@@ -19,6 +19,7 @@ A test suite contains multiple test cases. Not all of them may be required to pa
 ## Base Protocols 
 Conformance against the base protocols that are part of the [WE BUILD Conformance Test Suite](https://github.com/webuild-consortium/wp4-interop-test-bed/tree/main/tests/base-protocols) covering [CS-01 Credential Issuance](https://github.com/webuild-consortium/wp4-architecture/blob/main/conformance-specs/cs-01-credential-issuance.md) and [CS-02 Credential Presentation](https://github.com/webuild-consortium/wp4-architecture/blob/main/conformance-specs/cs-02-credential-presentation.md).
 
-|Organisation|CTSv1.0|Notes|More Information|
-|------------|-------|-------|--------------|
-|iGrant.io|✅|Full conformance|Information in [Wallet Capability Viewer](https://webuild-consortium.github.io/wp4-wallets-group/)|
+|Organisation|Service|CTSv1.0|Notes|More Information|
+|------------|-------|-------|------------|--------------|
+|iGrant.io|Business Wallet|✅|Full conformance|Information in [Wallet Capability Viewer](https://webuild-consortium.github.io/wp4-wallets-group/)|
+|Credenco|Business Wallet|✅|Full conformance|Information in [Wallet Capability Viewer](https://webuild-consortium.github.io/wp4-wallets-group/)|
