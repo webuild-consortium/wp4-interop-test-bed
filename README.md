@@ -23,10 +23,27 @@ wp4-interop-test-bed/
 └── LICENSE
 ```
 
-## 🚀 Getting Started
+# 🚀 Getting Started
 
-Follow these steps to set up and run the WP4 Interoperability Test Bed.
+Follow these steps to set up and run the WP4 Interoperability Test Bed. See [the documentation](docs/overview.md) for more detailed information.
 
+We did a presentation and demo on the ITB in January 2026. [Slides and video](https://portal.webuildconsortium.eu/topic/interoperability-testbed-itb-open-business) are available on OpenSocial.
+
+## Start Testing - Onboarding
+**Step 1** Contact [#itb-support](https://we-build-consortium.slack.com/archives/C09K65GLKT2) Slack channel with: 
+* Organisation name and contacts (technical + governance)  
+* Intended roles: Issuer / Verifier / Holder (one or more)  
+* Targeted profiles & protocol versions (e.g. OID4VCI 1.0, OID4VP 1.0, SD-JWT, mdoc)
+We will contact you via e-mail to get the information listed in step 2.
+
+**Step 2** Provide base URLs (dev/acc/prod) and security mode (bearer, mTLS, x-apikey). You will now receive the following:
+* An ITB tenant with namespaced configuration
+* Credentials (per tenant/profile)
+* Access to reference test suites and the reporting portal
+
+Before you can test, you need to implement and deploy an operational service (wallet/holder, issuer, verifier) based on the WE BUILD [Conformance Specifications](https://github.com/webuild-consortium/wp4-architecture/tree/main/conformance-specs)
+
+## Start Testing - Integrated Wallets
 ### 1. Clone the repository
 ```bash
 git clone git@github.com:webuild-consortium/wp4-interop-test-bed.git
@@ -45,14 +62,8 @@ cd tests/base-protocols
 # insert your command here (e.g., pytest, npm test, etc.)
 ```
 
-## 📖 Documentation
 
-See [docs/overview.md](docs/overview.md) for:  
-- Test bed architecture  
-- How to add new test cases  
-- Contribution guidelines  
-
-## 🤝 Contributing
+# 🤝 Contributing
 
 We welcome contributions from all collaborators.  
 
@@ -62,7 +73,7 @@ We welcome contributions from all collaborators.
 
 By contributing, you agree to follow the project’s coding and documentation guidelines.
 
-## 📜 Licence
+# 📜 Licence
 
 Licensed under the Apache 2.0 License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. The IP is handled as part of the WE BUILD Consortium IP agreement.
 
