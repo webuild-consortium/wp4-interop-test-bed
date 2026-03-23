@@ -21,3 +21,7 @@ This document lists the external test environments that we are aware of.
 
 [**External test events**](https://github.com/webuild-consortium/wp4-interop-test-bed/blob/main/docs/External%20test%20events.md)  
 This document lists the external test events that we are aware of. Please add any events that are missing and relevant to the partidcipants of WE BUILD.
+
+## Conformance Overview
+An [overview of all implementers in WE BUILD that provided a conformance report](https://github.com/webuild-consortium/wp4-interop-test-bed/blob/main/docs/Conformance%20Overview.md) for 1 or more of our test cases showing they passed them.
+
