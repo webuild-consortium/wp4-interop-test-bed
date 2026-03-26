@@ -23,3 +23,4 @@ Conformance against the base protocols that are part of the [WE BUILD Conformanc
 |------------|-------|-------|------------|--------------|
 |iGrant.io|Business Wallet|✅|Full conformance|[iGrant.io in Wallet Capability Viewer](https://webuild-consortium.github.io/wp4-wallets-group/?id=52)|
 |Credenco|Business Wallet|✅|Full conformance|[Credenco in Wallet Capability Viewer](https://webuild-consortium.github.io/wp4-wallets-group/?id=161)|
+|IDUnion|Business Wallet|✅|Full conformance on SD-JWT||
