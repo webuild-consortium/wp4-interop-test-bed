@@ -1,7 +1,7 @@
 # Conformance overview
 This document provides an overview of all implementers in WE BUILD that provided a conformance report for 1 or more of our test cases showing they passed them.
 
-For a full listing of all the wallets, including documentation, go to the [Wallet Capability Viewer](https://webuild-consortium.github.io/wp4-wallets-group/) provided by the Wallet Group (also available as [list view](https://webuild-consortium.github.io/wp4-wallets-group/?view=table).  Contact them on their [GitHub Repository](https://github.com/webuild-consortium/wp4-wallets-group) for questions on their listing.
+For a full listing of all the wallets, including documentation, go to the [Wallet Capability Viewer](https://webuild-consortium.github.io/wp4-wallets-group/) provided by the Wallet Group (also available as [list view](https://webuild-consortium.github.io/wp4-wallets-group/?view=table)).  Contact them on their [GitHub Repository](https://github.com/webuild-consortium/wp4-wallets-group) for questions on their listing.
 
 If you want to be included in this overview:
 - Run the test cases in the ITB.
@@ -24,3 +24,4 @@ Conformance against the base protocols that are part of the [WE BUILD Conformanc
 |iGrant.io|Business Wallet|✅|Full conformance|[iGrant.io in Wallet Capability Viewer](https://webuild-consortium.github.io/wp4-wallets-group/?id=52)|
 |Credenco|Business Wallet|✅|Full conformance|[Credenco in Wallet Capability Viewer](https://webuild-consortium.github.io/wp4-wallets-group/?id=161)|
 |IDUnion|Business Wallet|✅|Full conformance on SD-JWT||
+|Aricoma|Wallet|✅|Full conformance|[Aricoma in Wallet Capability Viewer](https://webuild-consortium.github.io/wp4-wallets-group/?id=4)|
