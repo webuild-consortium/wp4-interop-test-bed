@@ -25,3 +25,4 @@ Conformance against the base protocols that are part of the [WE BUILD Conformanc
 |Credenco|Business Wallet|✅|Full conformance|[Credenco in Wallet Capability Viewer](https://webuild-consortium.github.io/wp4-wallets-group/?id=161)|
 |IDUnion|Business Wallet|✅|Full conformance on SD-JWT||
 |Aricoma|Wallet|✅|Full conformance|[Aricoma in Wallet Capability Viewer](https://webuild-consortium.github.io/wp4-wallets-group/?id=4)|
+|Procivis|Procivis One Wallet|✅|Full conformance|[Procivis in Wallet Capability Viewer](https://webuild-consortium.github.io/wp4-wallets-group/?id=183)|
