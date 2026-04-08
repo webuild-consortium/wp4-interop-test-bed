@@ -26,3 +26,4 @@ Conformance against the base protocols that are part of the [WE BUILD Conformanc
 |IDUnion|Business Wallet|✅|Full conformance on SD-JWT||
 |Aricoma|Wallet|✅|Full conformance|[Aricoma in Wallet Capability Viewer](https://webuild-consortium.github.io/wp4-wallets-group/?id=4)|
 |Procivis|Procivis One Wallet|✅|Full conformance|[Procivis in Wallet Capability Viewer](https://webuild-consortium.github.io/wp4-wallets-group/?id=183)|
+|Siros|Siros Wallet|✅|Full conformance, except for support for DID:web|[Siros in Wallet Capability Viewer](https://webuild-consortium.github.io/wp4-wallets-group/?id=193)|
