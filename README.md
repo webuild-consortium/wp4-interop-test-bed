@@ -24,7 +24,8 @@ wp4-interop-test-bed/
 ```
 
 # ✅ Conformance Overview
-Here is [an overview of all implementers in WE BUILD that provided a conformance report](https://github.com/webuild-consortium/wp4-interop-test-bed/blob/main/docs/Conformance%20Overview.md) for 1 or more of our test cases showing they passed them.
+
+Here is [an overview of all implementers in WE BUILD that provided a conformance report](https://webuild-consortium.github.io/wp4-interop-test-bed/conformance-overview.html) for 1 or more of our test cases showing they passed them.
 
 # 🚀 Getting Started
 
