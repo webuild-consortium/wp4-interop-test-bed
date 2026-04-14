@@ -18,7 +18,7 @@ The European Commission is establishing a Functional Conformance Assessment Fram
 * It does NOT provide a testing environment or actual testing options, only the specifications and definitions
 * It is restricted to functional testing
 
-https://conformance.eudi.dev/latest/overview/
+https://conformance.eudi.dev/latest/
 
 Rough roadmap shows first functional stuff out in May (on PID issuing). From the Testing Group we'll monitor gaps and differences to testing in WE BUILD.
 
