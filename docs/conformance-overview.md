@@ -1,11 +1,8 @@
 # Conformance overview
 
-This document provides an overview of all implementers in WE BUILD that provided a conformance report for 1 or more of our test cases showing they passed them.
-
-For a full listing of all the wallets, including documentation, go to the [Wallet Capability Viewer](https://webuild-consortium.github.io/wp4-wallets-group/) provided by the Wallet Group (also available as [list view](https://webuild-consortium.github.io/wp4-wallets-group/?view=table)). Contact them on their [GitHub Repository](https://github.com/webuild-consortium/wp4-wallets-group) for questions on their listing.
+This document provides an overview of all implementers in WE BUILD that provided a conformance report for 1 or more of our test cases showing they passed them. Currently we only show the results for "Base Protocols". As they become available, we'll add tables for conformance to specific use cases and/or optional functionalities.
 
 If you want to be included in this overview:
-
 - Run the test cases in the ITB.
 - Generate a conformance statement report (PDF) for the test cases / test suites you want to be listed for.
   - Upload this to the folder ["Conformance Statement Reports" in Testing/Files](https://portal.webuildconsortium.eu/group/testing/files)
@@ -17,6 +14,11 @@ If you want to be included in this overview:
 The test cases cover the WE BUILD [Conformance Specifications](https://github.com/webuild-consortium/wp4-architecture/tree/main/conformance-specs) managed by Architecture.
 A test suite contains multiple test cases. Not all of them may be required to pass on full conformance. If there is a rationale for not passing the complete test suite, please provide this in writing to the Test Group (upload it with your conformance statement report).
 
+**More Information**  
+To keep this overview brief, we link to more information on a service (wallet, issuer, verifier) either in the generic overviews on wallet providers (provided by the Wallet Group) or the issuers/verifiers (provided by the QTSP Group). Contact them on their directly for questions on their listing of your services.  
+For a full listing of all the wallets, including documentation, go to the [Wallet Capability Viewer](https://webuild-consortium.github.io/wp4-wallets-group/) provided by the Wallet Group (also available as [list view](https://webuild-consortium.github.io/wp4-wallets-group/?view=table)). A full listing of all the issuers/verifiers can be found here: [QTSP Service Catalogue](https://webuild-consortium.github.io/wp4-qtsp-group/).  
+You can also provide your own URL to link to more information about the listed service.
+
 ## Base Protocols
 
 Conformance against the base protocols that are part of the [WE BUILD Conformance Test Suite](https://github.com/webuild-consortium/wp4-interop-test-bed/tree/main/tests/base-protocols) covering [CS-01 Credential Issuance](https://github.com/webuild-consortium/wp4-architecture/blob/main/conformance-specs/cs-01-credential-issuance.md) and [CS-02 Credential Presentation](https://github.com/webuild-consortium/wp4-architecture/blob/main/conformance-specs/cs-02-credential-presentation.md).
@@ -27,6 +29,7 @@ Conformance against the base protocols that are part of the [WE BUILD Conformanc
 | Cleverbase   | Issuer / Verifier        | ✅       | Full conformance                                 | [Cleverbase in QTSP Service Catalogue](https://webuild-consortium.github.io/wp4-qtsp-group/?id=cleverbase)                                                                                                                        |
 | Cleverbase   | Wallet                   | ✅       | Full conformance                                 | [Cleverbase in Wallet Capability Viewer](https://webuild-consortium.github.io/wp4-wallets-group/?id=18)                                                                                                                           |
 | Credenco     | Wallet                   | ✅       | Full conformance                                 | [Credenco in Wallet Capability Viewer](https://webuild-consortium.github.io/wp4-wallets-group/?id=161) <br> Business wallet                                                                                                        |
+| Digdir       | Issuer / Verifier        | ✅       | Full conformance                                 |                                                                                                                           |
 | Digidentity  | Wallet / Issuer / Verifier| ✅       | Full conformance                                | [Digidentity in Wallet Capability Viewer](https://webuild-consortium.github.io/wp4-wallets-group/?id=24) <br> [Digidentity Wallet and demo site](https://experience-portal.digidentity-preproduction.eu/)                                                                                                                           |
 | Digitel TS   | Issuer / Verifier        | ✅       | Full conformance                                 | [Digitel TS in QTSP Service Catalogue](https://webuild-consortium.github.io/wp4-qtsp-group/?id=digitel-ts)                                                                                                                        |
 | GRNet        | Wallet / Issuer / Verifier| ✅       | Full conformance, except for support for DID:web | [GRNet in Wallet Capability Viewer](https://webuild-consortium.github.io/wp4-wallets-group/?id=61)                                                                                                                                |
@@ -36,6 +39,7 @@ Conformance against the base protocols that are part of the [WE BUILD Conformanc
 | Intesi Group | Issuer                   | ✅       | Full conformance                                 | [Intesi Group TS in QTSP Service Catalogue](https://webuild-consortium.github.io/wp4-qtsp-group/?id=intesi-group)                                                                                                                 |
 | Izertis      | Wallet                   | ✅       | Full conformance, except for support for mdoc    | [Izertis in Wallet Capability Viewer](https://webuild-consortium.github.io/wp4-wallets-group/?id=51)                                                                                                                   |
 | KVK          | Wallet                   | ✅       | Full conformance, except for support for DID:web | [NL Wallet by KVK](https://wallet-connect.eu/?mode=personal&lang=en) <br> KVK NL Wallet                                                                                                                                           |
+| Namirial     | Wallet                   | ✅       | Full conformance                                 |                                                                                                     |
 | Procivis     | Wallet                   | ✅       | Full conformance                                 | [Procivis in Wallet Capability Viewer](https://webuild-consortium.github.io/wp4-wallets-group/?id=183) <br> Procivis One Wallet                                                                                                    |
 | Siros        | Wallet                   | ✅       | Full conformance, except for support for DID:web | [Siros in Wallet Capability Viewer](https://webuild-consortium.github.io/wp4-wallets-group/?id=193) <br> Siros Wallet                                                                                                             |
 | Spherity     | Wallet                   | ✅       | Full conformance, except for support for mdoc    | [Spherity in Wallet Capability Viewer](https://webuild-consortium.github.io/wp4-wallets-group/?id=75)                                                                                                                             |
