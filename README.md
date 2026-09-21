@@ -2,6 +2,8 @@
 
 This repository hosts the interoperability test bed for WP4. It provides test frameworks, conformance checks, and use case scenarios to validate interoperability across wallets, protocols, and domain-specific functions.
 
+Current number of participants onboarded to the WE BUILD ITB: 83
+
 ---
 
 ## 📂 Repository Structure
