@@ -54,7 +54,8 @@ Wallet providers with issuing and verifying capabilities are listed here as well
 
 | Organisation | Service                  | CTSv1.0 | CTSv2.0 | Notes                                            | More Information                                                                                                                                                                                                                  |
 | ------------ | ------------------------- | ------- | ------- | ------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Cleverbase   | Issuer / Verifier         | ✅       |  | Full conformance                                 | [Cleverbase in QTSP Service Catalogue](https://webuild-consortium.github.io/wp4-qtsp-group/?id=cleverbase)                                                                                                                        |
+| Authologic   | Issuer / Verifier         | ✅       |  | Full conformance                                 | |
+| Cleverbase   | Issuer / Verifier         | ✅       |  | Full conformance                                 | [Cleverbase in QTSP Service Catalogue](https://webuild-consortium.github.io/wp4-qtsp-group/?id=cleverbase)        |
 | Credenco     | Wallet / Issuer / Verifier| ✅       |  | Full conformance                                 | [Credenco in Wallet Capability Viewer](https://webuild-consortium.github.io/wp4-wallets-group/?id=161)   
 | Datev        | Issuer          | ✅      |   | Full conformance                                 |        
 | Digdir       | Issuer / Verifier         | ✅       |  | Full conformance                                 |  |
